@@ -1,101 +1,3 @@
-// htmlcss progress circular bar 
-let htmlProgress = document.querySelector(".html-css"),
-  htmlValue = document.querySelector(".html-progress");
-
-let htmlStartValue = 0,
-  htmlEndValue = 90,
-  htmlspeed = 30;
-
-let progresshtml = setInterval(() => {
-  htmlStartValue++;
-
-  htmlValue.textContent = `${htmlStartValue}%`;
-  htmlProgress.style.background = `conic-gradient(#fca61f ${
-    htmlStartValue * 3.6
-  }deg, #ededed 0deg)`;
-
-  if (htmlStartValue == htmlEndValue) {
-    clearInterval(progresshtml);
-  }
-}, htmlspeed);
-
-// javasript progress circular bar 
-let javascriptProgress = document.querySelector(".javascript"),
-  javascriptValue = document.querySelector(".javascript-progress");
-
-let javascriptStartValue = 0,
-  javascriptEndValue = 75,
-  jsspeed = 30;
-
-let progressjs = setInterval(() => {
-  javascriptStartValue++;
-
-  javascriptValue.textContent = `${javascriptStartValue}%`;
-  javascriptProgress.style.background = `conic-gradient(#7d2ae8 ${
-    javascriptStartValue * 3.6
-  }deg, #ededed 0deg)`;
-
-  if (javascriptStartValue == javascriptEndValue) {
-    clearInterval(progressjs);
-  }
-}, jsspeed);
-
-// php progress circular bar 
-let phpProgress = document.querySelector(".php"),
-  phpValue = document.querySelector(".php-progress");
-
-let phpStartValue = 0,
-  phpEndValue = 80,
-  phpspeed = 30;
-
-let progressphp = setInterval(() => {
-  phpStartValue++;
-
-  phpValue.textContent = `${phpStartValue}%`;
-  phpProgress.style.background = `conic-gradient(#20c997 ${
-    phpStartValue * 3.6
-  }deg, #ededed 0deg)`;
-
-  if (phpStartValue == phpEndValue) {
-    clearInterval(progressphp);
-  }
-}, phpspeed);
-
-// filter using javascript
-$(document).ready(function () {
-  $(".filter-item").click(function () {
-    const value = $(this).attr("data-filter");
-    if (value == "all") {
-      $(".post").show("1000");
-    } else {
-      $(".post")
-        .not("." + value)
-        .hide("1000");
-      $(".post")
-        .filter("." + value)
-        .show("1000");
-    }
-  });
-});
-
-
-// javascript for sticky navbar even if u scroll the navbar will be fixed
-document.addEventListener("DOMContentLoaded", function(){
-  window.addEventListener('scroll', function() {
-      if (window.scrollY > 50) {
-        document.getElementById('navbar-top').classList.add('fixed-top');
-        // add padding top to show content behind navbar
-        navbar_height = document.querySelector('.navbar').offsetHeight;
-        document.body.style.paddingTop = navbar_height + 'px';
-      } else {
-        document.getElementById('navbar-top').classList.remove('fixed-top');
-         // remove padding top from body
-        document.body.style.paddingTop = '0';
-      } 
-  });
-}); 
-
-
 // adding funtionality to back to top button 
 
 //Get the button
@@ -206,4 +108,118 @@ function erase() {
 
 document.addEventListener("DOMContentLoaded", function() {
     if(textArray.length) setTimeout(type, newTextDelay + 250);
+
+    // close mobile nav when a link is clicked
+    const navToggler = document.querySelector('.nav-menu');
+    const navCollapse = document.getElementById('navbarNav');
+    if (navToggler && navCollapse) {
+        const navLinks = navCollapse.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth < 992 && navCollapse.classList.contains('show')) {
+                    navToggler.click();
+                }
+            });
+        });
+    }
+
+    // contact form validation + send to Telegram
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        const nameInput = document.getElementById('contact-name');
+        const emailInput = document.getElementById('contact-email');
+        const messageInput = document.getElementById('contact-message');
+        const successText = document.getElementById('contact-success');
+        const errorText = document.getElementById('contact-error');
+
+        const badWords = ['hate', 'kill', 'racist', 'terror', 'terrorist', 'suicide', 'bomb'];
+
+        function containsBadWords(text) {
+            const lower = text.toLowerCase();
+            return badWords.some(w => lower.includes(w));
+        }
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            let isValid = true;
+
+            // reset state
+            [nameInput, emailInput, messageInput].forEach(input => {
+                input.classList.remove('is-invalid');
+            });
+            if (successText) successText.classList.add('d-none');
+            if (errorText) errorText.classList.add('d-none');
+
+            // name required
+            const nameValue = nameInput.value.trim();
+            if (!nameValue) {
+                nameInput.classList.add('is-invalid');
+                isValid = false;
+            }
+
+            // email
+            const emailValue = emailInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailValue || !emailRegex.test(emailValue)) {
+                emailInput.classList.add('is-invalid');
+                isValid = false;
+            }
+
+            // message: required + minimum words + simple bad word filter
+            const messageValue = messageInput.value.trim();
+            if (!messageValue) {
+                messageInput.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                const words = messageValue.split(/\s+/).filter(Boolean);
+                if (words.length < 5) {
+                    messageInput.classList.add('is-invalid');
+                    isValid = false;
+                }
+
+                if (containsBadWords(messageValue)) {
+                    messageInput.classList.add('is-invalid');
+                    isValid = false;
+                }
+            }
+
+            if (!isValid) {
+                return;
+            }
+
+            // Send via Web3Forms (works on GitHub Pages - replace YOUR_ACCESS_KEY)
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    access_key: '29de21f6-1702-4388-8bc8-5b8d55cecbd2',
+                    name: nameValue,
+                    email: emailValue,
+                    message: messageValue
+                })
+            })
+
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    contactForm.reset();
+                    if (successText) successText.classList.remove('d-none');
+                } else {
+                    if (errorText) {
+                        errorText.textContent = data.error || 'Sorry, something went wrong. Please try again.';
+                        errorText.classList.remove('d-none');
+                    }
+                }
+            })
+            .catch(() => {
+                if (errorText) {
+                    errorText.textContent = 'Network error. Please try again.';
+                    errorText.classList.remove('d-none');
+                }
+            });
+        });
+    }
 });
