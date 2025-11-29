@@ -193,119 +193,46 @@
               about learning new technologies and continuously improving my development skills.
             </p>
 
-            <!-- Devicon circular marquee strip -->
-            <div class="skills-marquee mt-4">
-              <div class="skills-marquee-track">
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+            <div class="skills-ring-wrapper mt-4">
+              <!-- Devicon pure circular ring -->
+              <div class="skills-ring">
+                <div class="skills-ring-circle">
+                  <div class="skills-ring-item" style="--i:0;">
                     <i class="devicon-html5-plain colored"></i>
                   </div>
-                  <span>HTML &amp; CSS</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:1;">
                     <i class="devicon-javascript-plain colored"></i>
                   </div>
-                  <span>JavaScript</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:2;">
                     <i class="devicon-php-plain colored"></i>
                   </div>
-                  <span>PHP</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:3;">
                     <i class="devicon-react-original colored"></i>
                   </div>
-                  <span>React</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:4;">
                     <i class="devicon-nodejs-plain colored"></i>
                   </div>
-                  <span>Node.js</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:5;">
                     <i class="devicon-typescript-plain colored"></i>
                   </div>
-                  <span>TypeScript</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:6;">
                     <i class="devicon-mysql-plain colored"></i>
                   </div>
-                  <span>MySQL &amp; Databases</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
+                  <div class="skills-ring-item" style="--i:7;">
                     <i class="devicon-cplusplus-plain colored"></i>
                   </div>
-                  <span>Data Structures &amp; Algorithms</span>
-                </div>
-
-                <!-- duplicate set for seamless loop -->
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-html5-plain colored"></i>
-                  </div>
-                  <span>HTML &amp; CSS</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-javascript-plain colored"></i>
-                  </div>
-                  <span>JavaScript</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-php-plain colored"></i>
-                  </div>
-                  <span>PHP</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-react-original colored"></i>
-                  </div>
-                  <span>React</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-nodejs-plain colored"></i>
-                  </div>
-                  <span>Node.js</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-typescript-plain colored"></i>
-                  </div>
-                  <span>TypeScript</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-mysql-plain colored"></i>
-                  </div>
-                  <span>MySQL &amp; Databases</span>
-                </div>
-                <div class="skills-marquee-item">
-                  <div class="skills-marquee-circle">
-                    <i class="devicon-cplusplus-plain colored"></i>
-                  </div>
-                  <span>Data Structures &amp; Algorithms</span>
                 </div>
               </div>
-            </div>
 
-            <button class="c-btn h-btn mt-4 py-3 px-5 rounded-pill">
-              <a
-                href="Dagim-Desalegn-CV.pdf"
-                download="SampleCV"
-                style="text-decoration: none;color: #fff;"
-                >Download CV</a
-              >
-            </button>
-          </div>
+              <button class="c-btn h-btn skills-download-btn rounded-pill">
+                <a
+                  href="Dagim-Desalegn-CV.pdf"
+                  download="SampleCV"
+                  style="text-decoration: none;color: #fff;"
+                  >Download CV</a
+                >
+              </button>
+            </div>
         </div>
       </div>
     </section>
@@ -319,14 +246,15 @@
       </div>
 
       <div class="portfolio-body container">
-        <div class="row justify-content-evenly g-4">
+        <div class="row justify-contxent-evenly g-4">
           <!-- Ethiopian University Info -->
           <div class="col-lg-4 col-md-6">
             <div class="portfolio-item" data-aos="fade-up">
-              <img src="images/EthiopianUniversityInfo.jpg" class="w-100" alt="Ethiopian University Info" />
               <div class="portfolio-info">
                 <h4>Ethiopian University Info</h4>
                 <p>Interactive platform for Ethiopian university information, programs and community discussions.</p>
+              <img src="images/EthiopianUniversityInfo.jpg" class="w-100" alt="Ethiopian University Info" />
+
                 <div class="tech-stack">
                   <span class="badge">PHP</span>
                   <span class="badge">MySQL</span>
@@ -492,8 +420,10 @@
               <p class="testimonial-text">
                 "Dagim quickly turns ideas into working solutions and is always ready to learn something new."
               </p>
-              <h5 class="testimonial-name">Mentor / Lecturer</h5>
-              <span class="testimonial-role">Academic Reference</span>
+              <h5 class="testimonial-name">Tech Lead</h5>
+             <span class="testimonial-role">
+              Mulubirhan Ayalew
+              </span>
             </div>
           </div>
           <div class="col-10 col-md-4" data-aos="fade-up" data-aos-delay="100">
@@ -502,7 +432,9 @@
                 "On real projects he takes ownership from backend logic to UI polishing and delivers on time."
               </p>
               <h5 class="testimonial-name">Project Collaborator</h5>
-              <span class="testimonial-role">Development Partner</span>
+              <span class="testimonial-role">
+                <a href="https://mintesnot.me/" target="_blank" class="text-decoration-none" style="color: #3f396d;">Mintsnot Teshome</a>
+              </span>
             </div>
           </div>
           <div class="col-10 col-md-4" data-aos="fade-up" data-aos-delay="200">
@@ -510,8 +442,9 @@
               <p class="testimonial-text">
                 "Curious, humble and committed to growth, he will be a strong addition to any dev team."
               </p>
-              <h5 class="testimonial-name">Personal Reference</h5>
               <span class="testimonial-role">Friend &amp; Colleague</span>
+              <h5 class="testimonial-name">Abebe Desalegn</h5>
+              
             </div>
           </div>
         </div>
