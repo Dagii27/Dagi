@@ -383,7 +383,7 @@ body {
 .image-lightbox-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .image-lightbox-content {
@@ -391,7 +391,7 @@ body {
   z-index: 1;
   max-width: 90vw;
   max-height: 90vh;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   border-radius: 12px;
   overflow: hidden;
 }
@@ -407,7 +407,7 @@ body {
   top: 8px;
   right: 12px;
   border: none;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
   color: #fff;
   font-size: 1.6rem;
   line-height: 1;
@@ -1209,79 +1209,117 @@ html {
   }
 }
 
-/* Devicon pure circular ring */
-.skills-ring-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
+/* Skills card with inner circular ring */
+.skills-motion-rect {
+  position: relative;
+  margin-top: 2rem;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: none;
+  overflow: hidden;
 }
 
-.skills-ring {
-  margin-top: 1.75rem;
+.skills-motion-inner {
+  padding: 4rem 3rem 3.4rem 3rem; /* more gap between icons border and content */
+  border-radius: 24px;
+  background: transparent;
+  border: none;
+}
+
+.skills-motion-actions {
   display: flex;
   justify-content: center;
-  align-items: center;
+}
+
+.skills-motion-actions .skills-download-btn {
+  min-width: 170px;
+}
+/* inner circular skills ring */
+.skills-ring-center {
+  display: flex;
+  justify-content: center;
 }
 
 .skills-ring-circle {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 210px;
+  height: 210px;
   border-radius: 50%;
-  border: 2px dashed rgba(111, 52, 254, 0.3);
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: ringRotate 22s linear infinite;
+  animation: skillsRingRotate 22s linear infinite;
 }
 
 .skills-ring-item {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 3px solid rgba(111, 52, 254, 0.4);
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
-  transform: rotate(calc(var(--i) * 45deg)) translate(95px) rotate(calc(var(--i) * -45deg));
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  transform: rotate(calc(var(--i) * 30deg)) translate(86px) rotate(calc(var(--i) * -30deg));
 }
+
 
 .skills-ring-item i {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
-@keyframes ringRotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.skills-ring-title {
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3f396d;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 1.2rem;
+  border-radius: 999px;
+  border: 1px dashed rgba(111, 52, 254, 0.4);
+  background: #ffffff;
 }
+
+.skills-ring-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.8rem;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #6c757d;
+}
+
+.skills-ring-labels span {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: #f3f4ff;
+}
+
+@keyframes skillsRingRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* skillsFloat removed – box stays static, only ring moves */
 
 @media (max-width: 768px) {
-  .skills-ring-wrapper {
-    flex-direction: column;
-    align-items: center;
+  .skills-motion-inner {
+    padding: 3.4rem 1.4rem 2.4rem 1.4rem;
   }
 
-  .skills-download-btn {
-    margin-top: 1rem;
-    padding: 0.8rem 2.1rem;
+  .skills-motion-actions {
+    justify-content: center;
   }
 
-  .skills-ring-circle {
-    width: 190px;
-    height: 190px;
-    animation-duration: 26s; /* slightly slower on mobile */
+  .skills-motion-rect {
+    animation-duration: 4.5s; /* a bit faster on mobile */
   }
 
-  .skills-ring-item {
-    width: 52px;
-    height: 52px;
-    transform: rotate(calc(var(--i) * 45deg)) translate(80px) rotate(calc(var(--i) * -45deg));
+  .skills-marquee-track-rect {
+    animation-duration: 9s; /* faster marquee on mobile */
   }
 }
