@@ -204,12 +204,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             .then(response => response.json())
             .then(data => {
-                if (data.ok) {
+                // Web3Forms returns { success: true/false, message: '...' }
+                if (data.success) {
                     contactForm.reset();
                     if (successText) successText.classList.remove('d-none');
                 } else {
                     if (errorText) {
-                        errorText.textContent = data.error || 'Sorry, something went wrong. Please try again.';
+                        errorText.textContent = data.message || 'Sorry, something went wrong. Please try again.';
                         errorText.classList.remove('d-none');
                     }
                 }
