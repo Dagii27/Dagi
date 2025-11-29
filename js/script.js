@@ -234,4 +234,51 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+
+    // image lightbox for portfolio & certificates
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = lightbox ? lightbox.querySelector('.image-lightbox-img') : null;
+    const lightboxClose = lightbox ? lightbox.querySelector('.image-lightbox-close') : null;
+    const lightboxBackdrop = lightbox ? lightbox.querySelector('.image-lightbox-backdrop') : null;
+
+    function openLightbox(src, alt) {
+        if (!lightbox || !lightboxImg) return;
+        lightboxImg.src = src;
+        lightboxImg.alt = alt || 'Preview';
+        lightbox.classList.remove('d-none');
+    }
+
+    function closeLightbox() {
+        if (!lightbox || !lightboxImg) return;
+        lightbox.classList.add('d-none');
+        lightboxImg.src = '';
+    }
+
+    if (lightbox) {
+        if (lightboxClose) {
+            lightboxClose.addEventListener('click', closeLightbox);
+        }
+        if (lightboxBackdrop) {
+            lightboxBackdrop.addEventListener('click', closeLightbox);
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    }
+
+    const previewSelectors = [
+        '.portfolio-item img',
+        '.certifcate-image img'
+    ];
+
+    previewSelectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function() {
+                openLightbox(img.src, img.alt);
+            });
+        });
+    });
 });
