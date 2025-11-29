@@ -68,9 +68,12 @@ const cursorSpan = document.querySelector(".cursor");
 const textArray = [
     "Frontend Developer",
     "Backend Developer",
-    "Video Editor",
-    "UI/UX Designer",
-    "Web Developer"
+    "Full Stack Developer",
+    "Telegram Bot Developer",
+    "Web Developer",
+    "Python Lover",
+    "musican",
+    "Deep Thinker"
 ];
 const typingDelay = 100;
 const erasingDelay = 50;
@@ -202,10 +205,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
             })
 
-            .then(response => response.json())
-            .then(data => {
-                // Web3Forms returns { success: true/false, message: '...' }
-                if (data.success) {
+            .then(async (response) => {
+                let data = {};
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    data = {};
+                }
+
+                const isSuccess = (response.ok && data.success !== false) || data.success === true;
+
+                if (isSuccess) {
                     contactForm.reset();
                     if (successText) successText.classList.remove('d-none');
                 } else {
@@ -215,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                 }
             })
+
             .catch(() => {
                 if (errorText) {
                     errorText.textContent = 'Network error. Please try again.';
