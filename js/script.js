@@ -281,4 +281,27 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     });
+
+    // buttons that reveal hidden certificate/portfolio images in the lightbox
+    const previewButtons = document.querySelectorAll('.preview-btn');
+    previewButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-preview-target');
+            if (!targetId) return;
+            const img = document.getElementById(targetId);
+            if (!img) return;
+
+            // briefly show image so lightbox can read dimensions (keep page clean)
+            const wasHidden = img.classList.contains('d-none');
+            if (wasHidden) {
+                img.classList.remove('d-none');
+            }
+
+            openLightbox(img.src, img.alt);
+
+            if (wasHidden) {
+                img.classList.add('d-none');
+            }
+        });
+    });
 });
